@@ -1,0 +1,80 @@
+# ===================================================================
+#  ビルドシステムの設定 (dev版から変更なし)
+# ===================================================================
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+
+# ===================================================================
+#  プロジェクトの基本情報 (公開用に情報を拡充)
+# ===================================================================
+[project]
+name = "my_project" # PyPIに公開するパッケージ名
+version = "0.1.0"
+description = "A short description of the project."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+  { name="Your Name", email="your.email@example.com" },
+]
+license = { file="LICENSE" } # ### <<< 変更: LICENSEファイルを指定する方式
+
+### <<< 追加: PyPIでパッケージを探しやすくするための分類子
+keywords = ["machine learning", "data science", "deep learning"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+
+# -------------------------------------------------------------------
+#  依存ライブラリ (コア) (dev版から変更なし)
+# -------------------------------------------------------------------
+dependencies = [
+    "numpy",
+    "pandas",
+]
+
+
+# ===================================================================
+#  ### <<< 追加: 公開用の各種URL
+# ===================================================================
+[project.urls]
+Homepage = "https://github.com/mizuno-group/my_project"
+Repository = "https://github.com/mizuno-group/my_project"
+"Bug Tracker" = "https://github.com/mizuno-group/my_project/issues"
+
+
+# ===================================================================
+#  ### <<< 追加: CLIの定義
+# ===================================================================
+[project.scripts]
+# `my-command` というコマンドを実行すると `my_project.cli:main` が呼ばれる
+my-command = "my_project.cli:main"
+
+
+# ===================================================================
+#  追加の依存ライブラリ (dev版からテスト用ライブラリを拡充)
+# ===================================================================
+[project.optional-dependencies]
+dev = [
+    # Notebook環境
+    "jupyterlab",
+    "ipykernel",
+
+    # コードフォーマッタ・リンタ
+    "black",
+    "ruff",
+    "isort",
+
+    # ### <<< 変更: テスト用ライブラリを標準で含める
+    "pytest",
+    "pytest-cov", # カバレッジ計測用
+]
