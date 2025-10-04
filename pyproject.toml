@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "boso-allocator"
+version = "0.3.1"
+description = "Boso vegetable allocation"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{name = "tadahayamiz"}]
+license = {text = "MIT"}
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["boso_allocator*"]
+
+[project.scripts]
+boso-alloc = "boso_allocator.main:run"
